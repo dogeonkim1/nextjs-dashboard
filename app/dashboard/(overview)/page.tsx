@@ -6,14 +6,16 @@ import {revenue} from "@/app/lib/placeholder-data";
 import { fetchLatestInvoices, fetchCardData} from '@/app/lib/data';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
-import { fetchRevenue } from '@/app/lib/data';
 
 export default async function Page() {
 
     const latestInvoices = await fetchLatestInvoices();
-    const revenue = await fetchRevenue();
 
-    const {numberOfCustomers,numberOfInvoices, totalPaidInvoices, totalPendingInvoices} = await fetchCardData();
+    const {
+        numberOfCustomers,
+        numberOfInvoices,
+        totalPaidInvoices,
+        totalPendingInvoices} = await fetchCardData();
 
     return (
         <main>
@@ -32,7 +34,7 @@ export default async function Page() {
             </div>
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
                 <Suspense fallback={<RevenueChartSkeleton />}>
-                    <RevenueChart revenue={revenue} />
+                    <RevenueChart />
                 </Suspense>
                 <LatestInvoices latestInvoices={latestInvoices} />
             </div>
