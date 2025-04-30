@@ -5,7 +5,12 @@ import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
-import { fetchInvoicesPages } from '@/app/lib/data'; // 예시로 추가
+import { fetchInvoicesPages } from '@/app/lib/data';
+import {Metadata} from "next"; // 예시로 추가
+
+export const metadata: Metadata = {
+    title: 'Invoices',
+};
 
 export default async function Page({ searchParams }: {
     searchParams?: {
