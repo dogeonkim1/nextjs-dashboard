@@ -6,22 +6,25 @@ import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { fetchInvoicesPages } from '@/app/lib/data';
-import {Metadata} from "next"; // 예시로 추가
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Invoices',
 };
 
-export default async function Page({ searchParams }: {
+// Next.js에서 사용하는 searchParams는 기본적으로 URLSearchParams에서 파싱된 값입니다.
+// 이를 기반으로 searchParams의 타입을 명시합니다.
+interface PageProps {
     searchParams?: {
         query?: string;
         page?: string;
     };
-}) {
+}
+
+export default async function Page({ searchParams }: PageProps) {
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
 
-    // totalPages를 DB에서 계산
     const totalPages = await fetchInvoicesPages(query);
 
     return (
