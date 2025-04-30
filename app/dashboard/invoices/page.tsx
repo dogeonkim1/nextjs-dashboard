@@ -2,6 +2,8 @@ import { fetchInvoicesPages } from '@/app/lib/data';
 import { Metadata } from 'next';
 import InvoicesClientPage from './InvoicesClientPage';
 
+export const runtime = 'nodejs';
+
 export const metadata: Metadata = {
     title: 'Invoices',
 };
